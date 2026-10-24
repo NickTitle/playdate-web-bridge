@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Playdate Web Bridge</title>
+<style>
+*{box-sizing:border-box}body{margin:auto;max-width:850px;padding:16px;padding-bottom:max(16px,env(safe-area-inset-bottom));background:#111;color:#eee;font:16px system-ui}h1{font-size:22px}button{font:inherit;color:inherit;background:#333;border:2px solid #777;border-radius:12px;min-width:60px;min-height:60px;touch-action:none;user-select:none;-webkit-user-select:none}button:active{background:#666}#screen{width:100%;aspect-ratio:5/3;object-fit:contain;background:#000;image-rendering:pixelated;border:1px solid #666}.controls{display:flex;flex-wrap:wrap;justify-content:space-around;gap:16px;margin-top:16px}.dpad{display:grid;grid-template:repeat(3,60px)/repeat(3,60px);gap:4px}.up{grid-area:1/2}.left{grid-area:2/1}.right{grid-area:2/3}.down{grid-area:3/2}.actions{display:flex;flex-direction:column;gap:12px}#crank{border-radius:50%;width:130px;height:130px;align-self:center}p{line-height:1.4}.muted{color:#bbb}button:disabled{opacity:.45}
+
+@media(max-width:600px){
+ body{padding:10px;padding-bottom:max(10px,env(safe-area-inset-bottom))}
+ h1{font-size:18px;margin:4px 0}#status{font-size:13px;margin:6px 0;min-height:36px}
+ button{min-width:44px;min-height:44px;font-size:14px}
+ .controls{gap:6px;margin-top:8px;flex-wrap:nowrap;align-items:center}
+ .dpad{grid-template:repeat(3,44px)/repeat(3,44px);gap:3px;flex-shrink:0}
+ .actions{gap:8px;flex:1}.actions button{font-size:12px;padding:2px}
+ #crank{width:88px;height:88px;min-width:88px}
+}
+@media(orientation:landscape) and (max-height:500px){
+ body{max-width:none;padding:8px max(12px,env(safe-area-inset-right)) 8px max(12px,env(safe-area-inset-left));display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,1fr);gap:6px 12px}
+ h1{display:none}#status{grid-column:1/-1;font-size:12px;margin:0;min-height:28px}
+ button{min-width:44px;min-height:44px;font-size:13px}
+ #connect,#sound{grid-row:2}#screen{grid-column:1;grid-row:3;max-height:calc(100svh - 106px)}
+ .controls{grid-column:2;grid-row:3;margin:0;gap:6px;flex-wrap:nowrap;align-items:center}
+ .dpad{grid-template:repeat(3,44px)/repeat(3,44px);gap:3px;flex-shrink:0}
+ .actions{gap:8px;flex:1}.actions button{font-size:12px;padding:2px}
+ #crank{width:80px;height:80px;min-width:80px}
+ body>p:not(#status){grid-column:1/-1}
+}
+</style>
+<h1>Playdate Web Bridge</h1>
+<p id="status" role="status">Not connected. Tap Connect to join the shared simulator.</p>
+<button id="connect">Connect</button>
+<button id="sound">Enable audio</button>
+<img id="screen" alt="Live simulator display appears after connection">
+<div class="controls">
+<div class="dpad" aria-label="D-pad">
+<button class="up" data-button="up" aria-label="Up">↑</button>
+<button class="left" data-button="left" aria-label="Left">←</button>
+<button class="right" data-button="right" aria-label="Right">→</button>
+<button class="down" data-button="down" aria-label="Down">↓</button>
+</div>
+<div class="actions"><button data-button="a">A</button><button data-button="b">B</button><button data-button="menu">Menu</button></div>
+<button id="crank" aria-label="Drag around the dial to turn the crank">↻ Crank</button>
+</div>
+<p>Use the D-pad, A/B, Menu, and draggable crank to control the game. Control behavior depends on the loaded game. One browser can control the shared simulator at a time.</p>
+<p><label>Audio boost <input id="audio-gain" type="range" min="0" max="30" value="0" step="1"> <output id="audio-gain-label">0 dB</output></label></p>
+<p class="muted">Audio requires server opt-in and a tap on Enable audio. Start at 0 dB and raise boost if needed. Quality and synchronization depend on the host/network. Linux simulator support is experimental; actual iOS and physical-device behavior is not established by this bridge.</p>
+<script type="module" src="./interface.mjs"></script>
+</html>

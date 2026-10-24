@@ -1,0 +1,10 @@
+/build/
+/session/
+.env
+.env.*
+*.log
+*.so
+*.pdx/
+*.pem
+*.key
+.aws/
