@@ -6,30 +6,35 @@ Run the Playdate simulator on a Linux host and play remotely from your browser, 
 
 *[Starfield for Playdate](https://github.com/NickTitle/starfield-playdate), played through the bridge.*
 
-## Quick start over Tailscale
+## Quick start
 
-On your Linux host, install Xvfb/X11, Go 1.22+, Make, a C compiler, the [Playdate SDK](https://play.date/dev/), and Tailscale. Copy your simulator-compatible `.pdx` game there.
-
-Connect to the host over SSH:
+On the Linux host, install Xvfb/X11, Go 1.22+, Make, a C compiler, and the [Playdate SDK](https://play.date/dev/). Copy your simulator-compatible `.pdx` game there.
 
 ```sh
 git clone https://github.com/NickTitle/playdate-web-bridge.git
 cd playdate-web-bridge
 make build audio
-tailscale serve --bg http://127.0.0.1:8080
 ```
 
-Copy the HTTPS address printed by Serve into `-origin` below, using just the scheme and hostname:
+Choose how your browser will reach the host:
+
+| Connection | Example browser origin | Setup |
+| --- | --- | --- |
+| SSH forwarding | `http://localhost:8080` | [SSH tunnel](docs/usage.md#ssh-forwarding) |
+| Tailscale Serve | `https://your-host.your-tailnet.ts.net` | [Tailscale HTTPS](docs/usage.md#tailscale-https) |
+| Your reverse proxy or VPN | `https://playdate.example.com` | [Other connections](docs/usage.md#reverse-proxy-or-private-network) |
+
+On the host, set `BRIDGE_ORIGIN` to your chosen browser origin—for example, `export BRIDGE_ORIGIN=http://localhost:8080` for SSH forwarding. Then launch:
 
 ```sh
 export PLAYDATE_SDK_PATH=/path/to/PlaydateSDK
 ./build/playdate-web-bridge \
   -cartridge /path/to/MyGame.pdx \
   -session "$PWD/session" \
-  -origin https://your-host.your-tailnet.ts.net \
+  -origin "$BRIDGE_ORIGIN" \
   -audio-library "$PWD/build/audio_stream.so"
 ```
 
-On your laptop or phone connected to the same tailnet, open that HTTPS address. Tap **Connect**, then **Enable audio**. Controls follow the Playdate layout: D-pad left, B/A right, Menu upper right, and a separate crank dial. Keep the host command running while you play.
+On your client, establish the chosen connection and open its browser address. Tap **Connect**, then **Enable audio**. The D-pad is left, B/A right, Menu upper right, with a separate crank dial. Keep the host command running while you play.
 
-[SSH tunnels and usage](docs/usage.md) · [How does it work?](docs/how-it-works.md) · [Development](docs/development.md) · [License](LICENSE) · [Dependencies](docs/third-party.md)
+[Remote usage](docs/usage.md) · [How does it work?](docs/how-it-works.md) · [Development](docs/development.md) · [License](LICENSE) · [Dependencies](docs/third-party.md)
