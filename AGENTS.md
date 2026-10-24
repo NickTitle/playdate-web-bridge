@@ -1,8 +1,9 @@
 # Playdate Web Bridge
 
-Keep this repository game-neutral. Do not add cartridges, SDK files, machine
-credentials, privileged deployment tools, local captures or worker records.
-Use explicit CLI configuration and preserve session isolation and control release.
-Run Go race tests and Node component tests before publishing changes.
-Real SDK/layout and audio checks must name the tested version and limitations;
-do not claim physical iOS/device compatibility from desktop component tests.
+Keep the bridge game-neutral, with explicit CLI configuration and isolated sessions.
+Store SDKs, cartridges, credentials, captures, and deployment tooling externally;
+README example screenshots belong in docs/.
+
+Run Go race tests and Node component tests for code changes. Document the SDK
+version and browser used for integration checks, and report mobile/device testing
+with its actual evidence.
