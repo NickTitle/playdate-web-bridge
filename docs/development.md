@@ -12,6 +12,11 @@ PLAYDATE_BRIDGE_TEST_X11=1 go test -race ./...
 
 The last command includes a bounded private-Xvfb transport check. Tests cover input edges and crank gestures, isolated saves, process cleanup, image conversion, WebSocket/controller handling, and bounded audio playback.
 
+With Playwright installed, `node tests/layout.mjs` checks control placement,
+44px touch targets, and portrait/landscape fit across nine viewports. Set
+`PLAYDATE_BRIDGE_PLAYWRIGHT` or `PLAYDATE_BRIDGE_CHROMIUM` to select local
+Playwright and Chromium installations. Screenshots are written to `build/layout/`.
+
 ## Compatibility
 
 The backend is calibrated for the Linux Playdate SDK 3.1.2 default 479×706 simulator layout. Validation covers Starfield desktop-browser use and an SDK FlippyFish startup/rendering smoke test. Broader game, SDK-layout, and mobile-device compatibility is under evaluation.

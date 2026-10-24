@@ -41,7 +41,7 @@ If you choose client port 8081, use `ssh -N -L 8081:127.0.0.1:8080 user@linux-ho
 
 ## Controls, sound, and saves
 
-Tap **Connect** to take control. Use the D-pad, A/B, Menu, and draggable crank; their actions follow the loaded game. One browser controls the session at a time. Disconnects and expired inputs release held controls.
+Tap **Connect** to take control. The D-pad sits on the left, with round B/A buttons on the right and Menu above the screen at the right edge. The crank has its own dial. Button actions follow the loaded game. One browser controls the session at a time. Disconnects and expired inputs release held controls.
 
 Tap **Enable audio** to unlock [browser audio playback](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices). Tap the sound button again to pause/resume. Boost starts at 0 dB; raise it for quiet output. Higher boost can distort loud material. Native simulator menus pause SDK sound and resume it on close.
 
