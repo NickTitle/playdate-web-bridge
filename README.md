@@ -2,7 +2,7 @@
 
 Run the Playdate simulator on a Linux host and play remotely from your browser, with touch controls, a virtual crank, live video, and audio.
 
-![Starfield running in Playdate Web Bridge](docs/starfield.png)
+![Starfield with Playdate-style D-pad, B/A buttons, Menu, and a separate crank](docs/starfield.png)
 
 *[Starfield for Playdate](https://github.com/NickTitle/starfield-playdate), played through the bridge.*
 
@@ -30,6 +30,6 @@ export PLAYDATE_SDK_PATH=/path/to/PlaydateSDK
   -audio-library "$PWD/build/audio_stream.so"
 ```
 
-On your laptop or phone connected to the same tailnet, open that HTTPS address. Tap **Connect**, then **Enable audio**. Keep the host command running while you play.
+On your laptop or phone connected to the same tailnet, open that HTTPS address. Tap **Connect**, then **Enable audio**. Controls follow the Playdate layout: D-pad left, B/A right, Menu upper right, and a separate crank dial. Keep the host command running while you play.
 
 [SSH tunnels and usage](docs/usage.md) · [How does it work?](docs/how-it-works.md) · [Development](docs/development.md) · [License](LICENSE) · [Dependencies](docs/third-party.md)
